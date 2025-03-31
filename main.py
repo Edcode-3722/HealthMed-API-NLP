@@ -4,6 +4,20 @@ from rag_core import responder_pregunta
 
 app = FastAPI()
 
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+# Habilitar CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Puedes limitar esto a ["http://127.0.0.1:5500"] si gustas
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 class PreguntaRequest(BaseModel):
     pregunta: str
 
